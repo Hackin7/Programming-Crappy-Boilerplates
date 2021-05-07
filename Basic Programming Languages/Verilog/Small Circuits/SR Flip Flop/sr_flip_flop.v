@@ -1,4 +1,4 @@
-module sr_latch_ungated(Q, Qn, S, R);
+module sr_flip_flop(Q, Qn, S, R);
    output Q;
    output Qn;
    input  S;
