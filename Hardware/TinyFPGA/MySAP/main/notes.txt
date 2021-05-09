@@ -1,0 +1,9 @@
+Done
+1. Program Counter -> Made into 8 bit
+2. RAM: Made into 16 bit by 8 bit addressing
+3. Memory Access Register
+(Removed instruction register)
+
+ALU, Register: No Changes
+
+

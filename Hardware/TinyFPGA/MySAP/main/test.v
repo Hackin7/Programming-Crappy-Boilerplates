@@ -1,13 +1,16 @@
 /**
  * SAP-1 whole system integration
  */
-`include "program_counter/program_counter.v"
-`include "ram_16x8/ram_16x8.v"
-`include "register/register.v"
-`include "alu/alu.v"
-`include "controller/controller.v"
+`include "program_counter.v"
+`include "ram.v"
+`include "register.v"
+`include "alu.v"
+`include "controller.v"
 
-module test;
+module test(
+    //input clk,
+    output [7:0] bus
+    );
    reg i_reset = 0;
    // Control-Sequencer output signals
    wire         ctl_halt;
@@ -25,11 +28,11 @@ module test;
    wire         ctl_program_counter_jump;
 
    // Component wires
-   wire [7:0]   bus; // Main system bus
+   //wire [7:0]   bus; // Main system bus
 
    wire [7:0]   opcode; //Connects from IR to Controller
-   
-   // RAM should respond to control signals and program mode:   
+
+   // RAM should respond to control signals and program mode:
    program_counter pc
      (
       .i_debug(1'b1),
@@ -56,7 +59,7 @@ module test;
       .o_unbuffered(ram_address)
       );
 
-  ram_16x8 ram
+ given_ram ram
      (
       .i_debug(1'b1), //i_debug_ram),
       .i_program_mode(1'b1), //i_program_mode)
@@ -67,11 +70,11 @@ module test;
       .i_read_enable(ctl_ram_out),
       .io_data(ram_bus),
       .o_data(bus)
-      ); 
-  
+      );
+
   reg ram_i_write = 0; buf(ram_write, ram_i_write);
   reg [7:0] ram_i_address; // assign ram_address = ram_i_address; //buf(ram_address, ram_i_address);
-  
+
   //reg ram_i_read =0; buf(ctl_ram_out, ram_i_read);
   //assign opcode = ram_bus[15:8];
   //assign bus = (bus) ? bus : ram_bus[7:0];
@@ -114,11 +117,11 @@ module test;
       );
 
   // Microcode Testing ////////////////////////////
-  reg controller_clk = 0;
+  //reg clk = 0;
   controller control
      (
       .i_debug(1'b1), //i_debug_control),
-      .i_clock(controller_clk), //i_clock),
+      .i_clock(clk), //i_clock),
       .i_reset(i_reset),
       .i_instruction(ram_bus),
       .i_flag_overflow(alu_flag_overflow),
@@ -139,13 +142,13 @@ module test;
       .o_program_counter_out(ctl_program_counter_out),
       .o_program_counter_jump(ctl_program_counter_jump)
       );
-  
-  // Testing Code ////////////////////////////////////
 
+  reg clk=0;
+  // Testing Code ////////////////////////////////////
   initial begin
     //////////////////////////////////////////////////
     $display("### Load RAM #################################");
-    $monitor("RAM Bus %b, Write %b, Normal bus %b", ram_bus, ram_i_write, bus);
+    $monitor("############### RAM Bus %b, Write %b, Normal bus %b #############", ram_bus, ram_i_write, bus);
     $monitor("Overflow %b %b",alu_flag_overflow, ctl_alu_out);
     // Loading into RAM
     ram_i_address = 0;
@@ -154,7 +157,7 @@ module test;
     $display("Writing");
     #10 ram_i_write=0;
     //#10 ram_i_read = 1;
-    #10 
+    #10
     //ram_i_read=0;
     ram_i_address = 1;
     ram_i_program_data = {8'd1, 8'd127}; // Max positive value
@@ -173,14 +176,22 @@ module test;
     ram_i_write = 1;
     #10 ram_i_write=0;
     // Microcode Test ////////////////////////////////
-    #10
-    $display();
-    $display("### Microcode Test ##########################$#####");
-    repeat(30) begin
-      #10 controller_clk = 1;
-      #10 controller_clk = 0;
-    end
-    $finish;
-  end  
-endmodule
 
+    #10
+    $display("");
+    $display("### Microcode Test ##########################$#####");
+    #10 clk = 1;
+    #10 clk = 0;
+    $display("### Bus: %0b ###############", bus);
+    #10 clk = 1;
+    #10 clk = 0;
+    $display("### Bus: %0b ###############", bus);
+
+    //repeat(2) begin
+    //  #10 clk = 1;
+    //  #10 clk = 0;
+      //$display("### Bus: %0b ###############", bus);
+    //end
+    //$finish;
+  end
+endmodule
