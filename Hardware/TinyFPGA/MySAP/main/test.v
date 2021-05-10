@@ -23,6 +23,8 @@ module test(
    wire         ctl_alu_subtract;
    wire         ctl_register_B_in;
    wire         ctl_register_output_in;
+   wire         ctl_instruction_in;
+   wire         ctl_instruction_out;
    wire         ctl_program_counter_increment;
    wire         ctl_program_counter_out;
    wire         ctl_program_counter_jump;
@@ -75,6 +77,27 @@ module test(
   reg ram_i_write = 0; buf(ram_write, ram_i_write);
   reg [7:0] ram_i_address; // assign ram_address = ram_i_address; //buf(ram_address, ram_i_address);
 
+  wire [15:0] instr_bus;
+  register inst_reg_opcode
+      (
+      .i_debug(1'b1),
+      .i_reset(i_reset),
+      .i_load_data(ctl_instruction_in),
+      .i_send_data(1'b0),
+      .i_bus(ram_bus[15:8]),
+      .o_bus(),
+      .o_unbuffered(instr_bus[15:8])
+      );
+  register inst_reg_data //data
+      (
+      .i_debug(1'b1),
+      .i_reset(i_reset),
+      .i_load_data(ctl_instruction_in),
+      .i_send_data(ctl_instruction_out),
+      .i_bus(ram_bus[7:0]),
+      .o_bus(bus),
+      .o_unbuffered(instr_bus[7:0])
+      );    
   //reg ram_i_read =0; buf(ctl_ram_out, ram_i_read);
   //assign opcode = ram_bus[15:8];
   //assign bus = (bus) ? bus : ram_bus[7:0];
@@ -123,15 +146,15 @@ module test(
       .i_debug(1'b1), //i_debug_control),
       .i_clock(clk), //i_clock),
       .i_reset(i_reset),
-      .i_instruction(ram_bus),
+      .i_instruction(instr_bus),
       .i_flag_overflow(alu_flag_overflow),
       .i_flag_zero(alu_flag_zero),
       .o_halt(ctl_halt),
       .o_memory_address_in(ctl_memory_address_in),
       .o_ram_in(ctl_ram_in),
       .o_ram_out(ctl_ram_out),
-      // .o_instruction_in(ctl_instruction_in),
-      // .o_instruction_out(ctl_instruction_out),
+      .o_instruction_in(ctl_instruction_in),
+      .o_instruction_out(ctl_instruction_out),
       .o_register_a_in(ctl_register_A_in),
       .o_register_a_out(ctl_register_A_out),
       .o_alu_out(ctl_alu_out),
@@ -156,7 +179,6 @@ module test(
     ram_i_write = 1;
     $display("Writing");
     #10 ram_i_write=0;
-    //#10 ram_i_read = 1;
     #10
     //ram_i_read=0;
     ram_i_address = 1;
@@ -171,9 +193,10 @@ module test(
     #10 ram_i_write=0;
     #10
     //ram_i_read=0;
+    $display("Jump Condition");
     ram_i_address = 3;
-    ram_i_program_data = {8'd7, 8'd2}; // 6 JMP, 7 JC  8 JZ
-    ram_i_write = 1;
+    ram_i_program_data = {8'd7, 8'd2}; // 6 JMP, 7 JC  8 JZc
+    ram_i_write=1;
     #10 ram_i_write=0;
     // Microcode Test ////////////////////////////////
 
@@ -187,11 +210,11 @@ module test(
     #10 clk = 0;
     $display("### Bus: %0b ###############", bus);
 
-    //repeat(2) begin
-    //  #10 clk = 1;
-    //  #10 clk = 0;
-      //$display("### Bus: %0b ###############", bus);
-    //end
+    repeat(15) begin
+      #10 clk = 1;
+      #10 clk = 0;
+      $display("### Bus: %0b ###############", bus);
+    end
     //$finish;
   end
 endmodule

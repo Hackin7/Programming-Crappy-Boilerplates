@@ -16,8 +16,8 @@ module controller
    output       o_memory_address_in,
    output       o_ram_in,
    output       o_ram_out,
-   // output       o_instruction_in,
-   // output       o_instruction_out,
+   output       o_instruction_in,
+   output       o_instruction_out,
    output       o_register_a_in,
    output       o_register_a_out,
    output       o_alu_out,
@@ -59,8 +59,8 @@ module controller
    assign o_memory_address_in = control_bits[14];
    assign o_ram_in = control_bits[13];
    assign o_ram_out = control_bits[12];
-   // assign o_instruction_out = control_bits[11];
-   // assign o_instruction_in = control_bits[10];
+   assign o_instruction_out = control_bits[11];
+   assign o_instruction_in = control_bits[10];
    assign o_register_a_in = control_bits[9];
    assign o_register_a_out = control_bits[8];
    assign o_alu_out = control_bits[7];
@@ -117,11 +117,20 @@ module controller
                      case (step)
                        2:
                          begin
+                            // LDA step 2
+                            // Instruction Out
+                            // Memory Register In
+                            if(i_debug) $display("DEBUG: Controller t-state 3: LDA");
+                            control_bits <= 16'b0100_1000_0000_0000;
+                            step <= step + 1;
+                         end 
+                      3:
+                         begin
                             // LDA step 3
                             // Ram Out
                             // Register A In
                             if(i_debug) $display("DEBUG: Controller t-state 4: LDA");
-                            control_bits <= 16'b0001_0010_0000_0000;
+                            control_bits <= 16'b0000_1010_0000_0000;
                             step <= 0; // done
                          end
                      endcase
@@ -131,14 +140,23 @@ module controller
                      case (step)
                        2:
                          begin
-                            // ADD step 3
-                            // Ram Out
-                            // Register B In
-                            if(i_debug) $display("DEBUG: Controller t-state 4: ADD");
-                            control_bits <= 16'b0001_0000_0010_0000;
+                            // ADD step 2
+                            // Instruction Out
+                            // Memory Register In
+                            if(i_debug) $display("DEBUG: Controller t-state 3: ADD");
+                            control_bits <= 16'b0;//0100_1000_0000_0000;
                             step <= step + 1;
                          end
                        3:
+                         begin
+                            // ADD step 3
+                            // Instr_data Out
+                            // Register B In
+                            if(i_debug) $display("DEBUG: Controller t-state 4: ADD");
+                            control_bits <= 16'b0000_1000_0010_0000;
+                            step <= step + 1;
+                         end
+                       4:
                          begin
                             // ADD step 4
                             // ALU Out
@@ -155,14 +173,23 @@ module controller
                      case (step)
                        2:
                          begin
-                            // SUB step 3
-                            // Ram Out
-                            // Register B In
-                            if(i_debug) $display("DEBUG: Controller t-state 4: SUB");
-                            control_bits <= 16'b0001_0000_0010_0000;
+                            // SUB step 2
+                            // Instruction Out
+                            // Memory Register In
+                            if(i_debug) $display("DEBUG: Controller t-state 3: SUB");
+                            control_bits <= 16'b0100_1000_0000_0000;
                             step <= step + 1;
                          end
                        3:
+                         begin
+                            // SUB step 3
+                            // Instr_Data Out
+                            // Register B In
+                            if(i_debug) $display("DEBUG: Controller t-state 4: SUB");
+                            control_bits <= 16'b0000_1000_0010_0000;
+                            step <= step + 1;
+                         end
+                       4:
                          begin
                             // SUB step 4
                             // ALU Subtract
@@ -218,10 +245,10 @@ module controller
                        2:
                          begin
                             // JMP step 2
-                            // RAM Out
+                            // Instruction Out
                             // Jump
                             if(i_debug) $display("DEBUG: Controller t-state 3: JMP");
-                            control_bits <= 16'b0001_0000_0000_0010;
+                            control_bits <= 16'b0000_1000_0000_0010;
                             step <= 0; // done
                          end
                      endcase // case (step)
@@ -237,7 +264,7 @@ module controller
                                // Instruction Out
                                // Jump
                                if(i_debug) $display("DEBUG: Controller t-state 3: JC: True");
-                               control_bits <= 16'b0001_0000_0000_0010;
+                               control_bits <= 16'b0000_1000_0000_0010;
                                step <= 0; // done
                             end
                             else begin
@@ -260,7 +287,7 @@ module controller
                                // Instruction Out
                                // Jump
                                if(i_debug) $display("DEBUG: Controller t-state 3: JZ: True");
-                               control_bits <= 16'b0001_0000_0000_0010;
+                               control_bits <= 16'b0000_1000_0000_0010;
                                step <= 0; // done
                             end
                             else begin
@@ -301,12 +328,10 @@ module controller
                      endcase // case (step)
                   end
               endcase // case (i_opcode)
-             
-             //step <=0; //NOP test
            end // else: !if(step == 1)
       end // else: !if(i_reset)
    end // always @ (posedge i_clock or posedge i_reset)
-
+   
    always @(control_bits) begin
       if(i_debug) begin
          if(control_bits[0]) $display("DEBUG: Control signal: FR In");
