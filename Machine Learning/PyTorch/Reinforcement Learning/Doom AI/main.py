@@ -90,8 +90,8 @@ from pathlib import Path
 save_dir = Path("checkpoints") / datetime.datetime.now().strftime("%Y-%m-%dT%H-%M-%S")
 save_dir.mkdir(parents=True)
 
-#doomguy = agent.Agent(state_dim=(4, 84, 84), action_dim=3, save_dir=save_dir)
-doomguy = agent.DQNAgent(state_dim=(4, 84, 84), action_dim=3, save_dir=save_dir)
+doomguy = agent.Agent(state_dim=(4, 84, 84), action_dim=3, save_dir=save_dir)
+#doomguy = agent.DQNAgent(state_dim=(4, 84, 84), action_dim=3, save_dir=save_dir)
 #doomguy.load('/tmp/doomguy_net.chkpt')
 
 
