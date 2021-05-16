@@ -1,0 +1,237 @@
+*** Fatal Error ***
+Address not mapped to object (signal 11)
+Address: 0x59
+
+System: Linux hackerbook 5.11.16-arch1-1 #1 SMP PREEMPT Wed, 21 Apr 2021 17:22:13 +0000 x86_64 GNU/Linux
+
+
+Executing: gdb --quiet --batch --command=gdb-respfile-BkWTz9
+[New LWP 26473]
+[New LWP 26474]
+0x00007f9917d6e10f in wait4 () from /usr/lib/libc.so.6
+
+* Loaded Libraries
+From                To                  Syms Read   Shared Object Library
+0x00007f99183d0040  0x00007f99184d19a2  Yes (*)     /usr/lib/libSDL2-2.0.so.0
+0x00007f9918395a50  0x00007f99183a3a1f  No          /usr/lib/libpthread.so.0
+0x00007f9918386790  0x00007f99183898c0  Yes (*)     /usr/lib/librt.so.1
+0x00007f991836c020  0x00007f9918379270  Yes (*)     /usr/lib/libz.so.1
+0x00007f99182e3020  0x00007f991832b386  Yes (*)     /usr/lib/libjpeg.so.8
+0x00007f99182ce020  0x00007f99182da452  Yes (*)     /usr/lib/libbz2.so.1.0
+0x00007f99182b6020  0x00007f99182c16b8  Yes (*)     /usr/lib/libboost_thread.so.1.75.0
+0x00007f99182aa020  0x00007f99182aa0f1  Yes (*)     /usr/lib/libboost_system.so.1.75.0
+0x00007f99182a5020  0x00007f99182a50f1  Yes (*)     /usr/lib/libboost_date_time.so.1.75.0
+0x00007f991829c020  0x00007f991829f183  Yes (*)     /usr/lib/libboost_chrono.so.1.75.0
+0x00007f991821d020  0x00007f9918272e5f  Yes (*)     /usr/lib/libsndfile.so.1
+0x00007f99181ba020  0x00007f99181f4c96  Yes (*)     /usr/lib/libmpg123.so.0
+0x00007f99181ad210  0x00007f99181ae179  Yes (*)     /usr/lib/libdl.so.2
+0x00007f9918064040  0x00007f991814fa32  Yes         /usr/lib/libstdc++.so.6
+0x00007f9917e983b0  0x00007f9917f32878  Yes (*)     /usr/lib/libm.so.6
+0x00007f9917e72020  0x00007f9917e82ca5  Yes         /usr/lib/libgcc_s.so.1
+0x00007f9917cc8650  0x00007f9917e1216d  Yes (*)     /usr/lib/libc.so.6
+0x00007f9918568090  0x00007f991858b206  Yes (*)     /lib64/ld-linux-x86-64.so.2
+0x00007f9917c09020  0x00007f9917c0b677  Yes (*)     /usr/lib/libvorbisenc.so.2
+0x00007f9917bbf020  0x00007f9917be779b  Yes (*)     /usr/lib/libFLAC.so.8
+0x00007f9917b5b020  0x00007f9917b9fe19  Yes (*)     /usr/lib/libopus.so.0
+0x00007f9917b2e020  0x00007f9917b4351b  Yes (*)     /usr/lib/libvorbis.so.0
+0x00007f9917b21020  0x00007f9917b233de  Yes (*)     /usr/lib/libogg.so.0
+0x00007f9917af4040  0x00007f9917b0c7c0  Yes (*)     /usr/lib/libudev.so.1
+0x00007f991517f020  0x00007f9915204309  Yes (*)     /usr/lib/libopenal.so
+0x00007f9915152020  0x00007f991515c877  Yes (*)     /usr/lib/libjack.so.0
+0x00007f9914fb7020  0x00007f99150fa1b1  Yes (*)     /usr/lib/libdb-5.3.so
+0x00007f9914f45020  0x00007f9914f733c0  Yes (*)     /usr/lib/libpulse.so.0
+0x00007f9914ec8040  0x00007f9914f0d312  Yes (*)     /usr/lib/pulseaudio/libpulsecommon-14.2.so
+0x00007f9914e6c020  0x00007f9914e9a203  Yes (*)     /usr/lib/libdbus-1.so.3
+0x00007f9914e40020  0x00007f9914e52b86  Yes (*)     /usr/lib/libxcb.so.1
+0x00007f9914d8e040  0x00007f9914e06fb0  Yes (*)     /usr/lib/libsystemd.so.0
+0x00007f9918559020  0x00007f991855b67a  Yes (*)     /usr/lib/libasyncns.so.0
+0x00007f9918553040  0x00007f9918553d52  Yes (*)     /usr/lib/libXau.so.6
+0x00007f991854c020  0x00007f991854d882  Yes (*)     /usr/lib/libXdmcp.so.6
+0x00007f9914d56020  0x00007f9914d6ce73  Yes (*)     /usr/lib/liblzma.so.5
+0x00007f9914c7e020  0x00007f9914d3d966  Yes (*)     /usr/lib/libzstd.so.1
+0x00007f9914c59020  0x00007f9914c73957  Yes (*)     /usr/lib/liblz4.so.1
+0x00007f9914c4e020  0x00007f9914c51296  Yes (*)     /usr/lib/libcap.so.2
+0x00007f9914b1d040  0x00007f9914bfe5c8  Yes (*)     /usr/lib/libgcrypt.so.20
+0x00007f9914af8710  0x00007f9914b055fc  Yes (*)     /usr/lib/libresolv.so.2
+0x00007f9914ad2040  0x00007f9914ae68d2  Yes (*)     /usr/lib/libgpg-error.so.0
+0x00007f9907edb020  0x00007f9907f64ade  Yes (*)     /usr/lib/libX11.so.6
+0x00007f99152d0020  0x00007f99152da33e  Yes (*)     /usr/lib/libXext.so.6
+0x00007f9914067020  0x00007f991406bc3e  Yes (*)     /usr/lib/libXcursor.so.1
+0x00007f9914059020  0x00007f991405f3a3  Yes (*)     /usr/lib/libXrender.so.1
+0x00007f9914050020  0x00007f9914052446  Yes (*)     /usr/lib/libXfixes.so.3
+0x00007f991404a020  0x00007f991404a9a3  Yes (*)     /usr/lib/libXinerama.so.1
+0x00007f9914039020  0x00007f9914043989  Yes (*)     /usr/lib/libXi.so.6
+0x00007f991402b020  0x00007f9914031696  Yes (*)     /usr/lib/libXrandr.so.2
+0x00007f9914025020  0x00007f9914025cfd  Yes (*)     /usr/lib/libXss.so.1
+0x00007f991401e020  0x00007f991402082b  Yes (*)     /usr/lib/libXxf86vm.so.1
+0x00007f9907b94020  0x00007f9907b96a1d  Yes (*)     /usr/lib/libGL.so.1
+0x00007f9907a5f020  0x00007f9907a60f87  Yes (*)     /usr/lib/libGLdispatch.so.0
+0x00007f99079ee020  0x00007f9907a07bb1  Yes (*)     /usr/lib/libGLX.so.0
+0x00007f990798a040  0x00007f99079ce052  Yes (*)     /usr/lib/libGLX_mesa.so.0
+0x00007f9907943020  0x00007f9907950731  Yes (*)     /usr/lib/libglapi.so.0
+0x00007f991400d020  0x00007f9914016666  Yes (*)     /usr/lib/libdrm.so.2
+0x00007f9907925020  0x00007f990792d6a6  Yes (*)     /usr/lib/libxcb-glx.so.0
+0x00007f9914004020  0x00007f991400410b  Yes (*)     /usr/lib/libX11-xcb.so.1
+0x00007f9907b4d020  0x00007f9907b4e1a6  Yes (*)     /usr/lib/libxcb-dri2.so.0
+0x00007f9907915020  0x00007f9907915b44  Yes (*)     /usr/lib/libxcb-shm.so.0
+0x00007f99078e9020  0x00007f9907905082  Yes (*)     /usr/lib/libexpat.so.1
+0x00007f99078e1020  0x00007f99078e1e34  Yes (*)     /usr/lib/libxcb-dri3.so.0
+0x00007f99078db020  0x00007f99078db8a6  Yes (*)     /usr/lib/libxcb-present.so.0
+0x00007f99078d3020  0x00007f99078d51b2  Yes (*)     /usr/lib/libxcb-sync.so.1
+0x00007f99078cc020  0x00007f99078cc2ec  Yes (*)     /usr/lib/libxshmfence.so.1
+0x00007f99078c4020  0x00007f99078c66cc  Yes (*)     /usr/lib/libxcb-xfixes.so.0
+0x00007f9906171040  0x00007f99070b9352  Yes (*)     /usr/lib/dri/iris_dri.so
+0x00007f98fadf9040  0x00007f98fdf57582  Yes (*)     /usr/lib/libLLVM-11.so
+0x00007f990604e020  0x00007f9906054776  Yes (*)     /usr/lib/libsensors.so.5
+0x00007f990603e020  0x00007f9906044975  Yes (*)     /usr/lib/libdrm_radeon.so.1
+0x00007f9906025020  0x00007f9906034c0b  Yes (*)     /usr/lib/libelf.so.1
+0x00007f9906019020  0x00007f990601d5c0  Yes (*)     /usr/lib/libdrm_amdgpu.so.1
+0x00007f990600e020  0x00007f9906011c37  Yes (*)     /usr/lib/libdrm_nouveau.so.2
+0x00007f9905fc0020  0x00007f9905ff2569  Yes (*)     /usr/lib/libvulkan.so.1
+0x00007f9905fa1040  0x00007f9905fa63c6  Yes (*)     /usr/lib/../lib/libffi.so.7
+0x00007f9905f6d020  0x00007f9905f896e8  Yes (*)     /usr/lib/../lib/libedit.so.0
+0x00007f9905f0a020  0x00007f9905f45fd8  Yes (*)     /usr/lib/../lib/libncursesw.so.6
+0x00007f9905db3020  0x00007f9905e9b50f  Yes (*)     /usr/lib/../lib/libxml2.so.2
+0x00007f9905bf8020  0x00007f9905ce5568  Yes (*)     /usr/lib/../lib/libicuuc.so.69
+                                        Yes (*)     /usr/lib/../lib/libicudata.so.69
+0x00007f9904028550  0x00007f990402e17c  Yes (*)     /usr/lib/libnss_files.so.2
+(*): Shared library is missing debugging information.
+
+* Threads
+  Id   Target Id            Frame 
+* 1    LWP 26472 "vizdoom"  0x00007f9917d6e10f in wait4 () from /usr/lib/libc.so.6
+  2    LWP 26473 "SDLTimer" 0x00007f99183a39ba in __futex_abstimed_wait_common64 () from /usr/lib/libpthread.so.0
+  3    LWP 26474 "vizdoom"  0x00007f9917cdfce2 in sigtimedwait () from /usr/lib/libc.so.6
+
+* FPU Status
+  R7: Empty   0x00000000000000000000
+  R6: Empty   0x00000000000000000000
+  R5: Empty   0x00000000000000000000
+  R4: Empty   0x00000000000000000000
+  R3: Empty   0x00000000000000000000
+  R2: Empty   0x00000000000000000000
+  R1: Empty   0x00000000000000000000
+=>R0: Empty   0x00000000000000000000
+
+Status Word:         0x0000                                            
+                       TOP: 0
+Control Word:        0x037f   IM DM ZM OM UM PM
+                       PC: Extended Precision (64-bits)
+                       RC: Round to nearest
+Tag Word:            0xffff
+Instruction Pointer: 0x00:0x00000000
+Operand Pointer:     0x00:0x00000000
+Opcode:              0x0000
+
+* Registers
+rax            0xfffffffffffffe00  -512
+rbx            0x683d              26685
+rcx            0x7f9917d6e10f      140295506682127
+rdx            0x0                 0
+rsi            0x556fc105096c      93938468063596
+rdi            0x683d              26685
+rbp            0xb                 0xb
+rsp            0x556fc1050930      0x556fc1050930
+r8             0x0                 0
+r9             0x0                 0
+r10            0x0                 0
+r11            0x293               659
+r12            0x556fc105096c      93938468063596
+r13            0x556fc104df40      93938468052800
+r14            0x9                 9
+r15            0x1090              4240
+rip            0x7f9917d6e10f      0x7f9917d6e10f <wait4+95>
+eflags         0x293               [ CF AF SF IF ]
+cs             0x33                51
+ss             0x2b                43
+ds             0x0                 0
+es             0x0                 0
+fs             0x0                 0
+gs             0x0                 0
+
+* Backtrace
+
+Thread 3 (LWP 26474 "vizdoom"):
+#0  0x00007f9917cdfce2 in sigtimedwait () from /usr/lib/libc.so.6
+No symbol table info available.
+#1  0x00007f991838955b in ?? () from /usr/lib/librt.so.1
+No symbol table info available.
+#2  0x00007f9918397299 in start_thread () from /usr/lib/libpthread.so.0
+No symbol table info available.
+#3  0x00007f9917da1053 in clone () from /usr/lib/libc.so.6
+No symbol table info available.
+
+Thread 2 (LWP 26473 "SDLTimer"):
+#0  0x00007f99183a39ba in __futex_abstimed_wait_common64 () from /usr/lib/libpthread.so.0
+No symbol table info available.
+#1  0x00007f991839fb98 in __new_sem_wait_slow64.constprop.0 () from /usr/lib/libpthread.so.0
+No symbol table info available.
+#2  0x00007f99184cf6c4 in ?? () from /usr/lib/libSDL2-2.0.so.0
+No symbol table info available.
+#3  0x00007f991842ff68 in ?? () from /usr/lib/libSDL2-2.0.so.0
+No symbol table info available.
+#4  0x00007f991842f8d1 in ?? () from /usr/lib/libSDL2-2.0.so.0
+No symbol table info available.
+#5  0x00007f99184cecaa in ?? () from /usr/lib/libSDL2-2.0.so.0
+No symbol table info available.
+#6  0x00007f9918397299 in start_thread () from /usr/lib/libpthread.so.0
+No symbol table info available.
+#7  0x00007f9917da1053 in clone () from /usr/lib/libc.so.6
+No symbol table info available.
+
+Thread 1 (LWP 26472 "vizdoom"):
+#0  0x00007f9917d6e10f in wait4 () from /usr/lib/libc.so.6
+No symbol table info available.
+#1  0x0000556fc0b7ecdc in ?? ()
+No symbol table info available.
+#2  <signal handler called>
+No symbol table info available.
+#3  0x00007f99061a840f in ?? () from /usr/lib/dri/iris_dri.so
+No symbol table info available.
+#4  0x00007f99061b1389 in ?? () from /usr/lib/dri/iris_dri.so
+No symbol table info available.
+#5  0x00007f99064e0d51 in ?? () from /usr/lib/dri/iris_dri.so
+No symbol table info available.
+#6  0x00007f990629ea3b in ?? () from /usr/lib/dri/iris_dri.so
+No symbol table info available.
+#7  0x00007f990621e6b9 in ?? () from /usr/lib/dri/iris_dri.so
+No symbol table info available.
+#8  0x00007f99061ad236 in ?? () from /usr/lib/dri/iris_dri.so
+No symbol table info available.
+#9  0x00007f9906666173 in ?? () from /usr/lib/dri/iris_dri.so
+No symbol table info available.
+#10 0x00007f99079bd1e0 in ?? () from /usr/lib/libGLX_mesa.so.0
+No symbol table info available.
+#11 0x00007f99079a8191 in ?? () from /usr/lib/libGLX_mesa.so.0
+No symbol table info available.
+#12 0x00007f99184a06cd in ?? () from /usr/lib/libSDL2-2.0.so.0
+No symbol table info available.
+#13 0x00007f991840a321 in ?? () from /usr/lib/libSDL2-2.0.so.0
+No symbol table info available.
+#14 0x0000556fc0b8401e in SDLFB::~SDLFB() ()
+No symbol table info available.
+#15 0x0000556fc0b84059 in SDLFB::~SDLFB() ()
+No symbol table info available.
+#16 0x0000556fc0b7f554 in I_ShutdownGraphics() ()
+No symbol table info available.
+#17 0x0000556fc0b82bb6 in call_terms() ()
+No symbol table info available.
+#18 0x00007f9917ce1697 in __run_exit_handlers () from /usr/lib/libc.so.6
+No symbol table info available.
+#19 0x00007f9917ce183e in exit () from /usr/lib/libc.so.6
+No symbol table info available.
+#20 0x0000556fc0b803d2 in MessagePump(SDL_Event const&) ()
+No symbol table info available.
+#21 0x0000556fc0b80968 in I_GetEvent() ()
+No symbol table info available.
+#22 0x0000556fc0bbb7f5 in NetUpdate() ()
+No symbol table info available.
+#23 0x0000556fc0bbcd57 in TryRunTics() ()
+No symbol table info available.
+#24 0x0000556fc0bb473c in D_DoomLoop() ()
+No symbol table info available.
+#25 0x0000556fc0bb6c6f in D_DoomMain() ()
+No symbol table info available.
+#26 0x0000556fc0b68129 in main ()
+No symbol table info available.
+[Inferior 1 (process 26472) detached]

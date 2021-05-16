@@ -150,25 +150,3 @@ for episode in range(total_episodes):
     logger.log_episode()
     if episode % 20 == 0:
         logger.record(episode=episode, epsilon=doomguy.exploration_rate, step=doomguy.curr_step)
-    #print(total_reward)
-
-
-'''
-episodes = 1000
-for e in range(episodes):
-
-    state = env.reset()
-
-    # Play the game!
-    while True:
-        env.render()
-        # Run agent on the state
-        action = doomguy.act(state)
-
-        next_state, reward, done, info = env.step(action)
-        mario.cache(state, next_state, action, reward, done)
-        q, loss = mario.learn()
-        state = next_state
-        if done or info["flag_get"]:
-            break
-'''
