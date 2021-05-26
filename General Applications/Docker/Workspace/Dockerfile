@@ -8,7 +8,7 @@ COPY . .
 RUN ls
 
 #Expose ports if needed
-#EXPOSE 80 5000
+# EXPOSE 80 5000
 #  docker run -dp 3000:3000 getting-started
 
 ## Entry points
