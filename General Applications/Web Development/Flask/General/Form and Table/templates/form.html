@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Form</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"></link>
+    </head>
+    <body>
+        
+        <h1>Form</h1>
+        <form action="{{url_for('table')}}" method='get' enctype='multipart/form-data'>
+            <span>Text Field</span>
+            <input type='text' name='textfield'>
+            <input type='submit'>
+        </form>
+        
+    </body>
+</html>

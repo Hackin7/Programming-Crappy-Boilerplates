@@ -1,0 +1,71 @@
+<body>
+
+<div>
+<input name='username' id="username">
+<input name='password' id="password">
+<input type="button" value='Login' 
+ onclick="login('http://localhost:5000/api/login',document.getElementById('username').value ,document.getElementById('password').value);">
+<input type="button" value="Register" 
+onclick="register('http://localhost:5000/api/register',
+document.getElementById('username').value,
+document.getElementById('password').value);">
+</div>
+
+<input type="button" value='Get Data' 
+onclick="getData('http://localhost:5000/api/protected', access_token,'',(x) =>alert(JSON.stringify(x)) );">
+
+</body>
+
+<script>
+var access_token = '';
+
+function login(url, username, password){
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url);//, true);
+    //xhr.setRequestHeader('', 'Bearer ');
+    xhr.onload = function(){
+         //alert(this.responseText);
+         let data = JSON.parse(this.responseText);
+         access_token = data.access_token;
+         if (data.hasOwnProperty("access_token")){alert('Logged In');}
+         else {alert(JSON.stringify(data));}
+    }
+    let payload = JSON.stringify({"username":username, "password":password});
+    //console.log(payload);
+    xhr.send(payload);
+    alert(payload);
+}
+
+function register(url, username, password){
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url);//, true);
+    //xhr.setRequestHeader('', 'Bearer ');
+    xhr.onload = function(){
+         //alert(this.responseText);
+         let data = JSON.parse(this.responseText);
+         access_token = data.access_token;
+         if (data.successful){alert('Registered');}
+         else {alert(JSON.stringify(data));}
+    }
+    let payload = JSON.stringify({"username":username, "password":password});
+    //console.log(payload);
+    xhr.send(payload);
+    alert(payload);
+}
+
+function getData(URL_PATH, AUTH_TOKEN, payload,  done){
+    //alert();
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', URL_PATH, true);
+    xhr.setRequestHeader('Authorization', 'Bearer '+AUTH_TOKEN);
+    xhr.onload = function(){
+         //alert(this.responseText);
+         let data = JSON.parse(this.responseText);
+         done(data);
+    }
+    xhr.send(payload);
+}
+
+//login('http://localhost:5000/api/login',1,"1234");
+//getData('http://localhost:5000/api/protected', "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MjMzMTAxMjEsImV4cCI6MTYyMzM5NjUyMSwianRpIjoiZDYxMGRiNTUtMjYxZi00YjQzLWFhNzgtMGY5MmIxMmEwZjNmIiwiaWQiOjEsInJscyI6IiIsInJmX2V4cCI6MTYyNTkwMjEyMX0.xbPY25emCGObniUQ-KFu2Bajs0oEEuE4RyJfw5-3NVk","",alert);
+</script>

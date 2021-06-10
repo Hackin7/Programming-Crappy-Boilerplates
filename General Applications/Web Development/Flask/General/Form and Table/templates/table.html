@@ -1,0 +1,25 @@
+
+<!doctype html>
+<html>
+    <head>
+        <title>Table</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"></link>
+    </head>
+    <body>
+        <h1>Table</h1>
+        <table>
+            <tr>
+                {% for header in headers %}
+                <th>{{header}}</th>
+                {% endfor %}
+            </tr>
+            {% for record in data %}
+            <tr>
+                {% for i in record %}
+                <td>{{i}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

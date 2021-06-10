@@ -1,0 +1,19 @@
+table,td,th{
+    border-collapse: collapse;  /* Add to combine borders */
+    border:1px solid black;
+    background-color:gray;
+}
+
+/*
+table{
+    width:40vw;
+    height:40vh;
+}
+*/
+td,th{
+    padding:10px;
+}
+th{
+    color:white;
+    background-color:black; /* Overriding Styles */
+}

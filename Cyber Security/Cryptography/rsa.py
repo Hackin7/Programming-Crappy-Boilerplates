@@ -1,3 +1,4 @@
+# Alt Method: https://hackin7.github.io/Generated/CTF_Writeups/2020/Whitehacks%202020/Crypto/RSB%20(2_4)/index.html
 import math
 
 def getModInverse(a, m):
