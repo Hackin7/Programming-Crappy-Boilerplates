@@ -46,7 +46,7 @@ class GeneticAlgorithm:
                 minFitness = newFitness
                 value = self.population[0]
             generation += 1
-            
+
         if self.debug: print(f"Generation {generation}, Fitness={minFitness}: {self.population}")
         return generation,value
 
