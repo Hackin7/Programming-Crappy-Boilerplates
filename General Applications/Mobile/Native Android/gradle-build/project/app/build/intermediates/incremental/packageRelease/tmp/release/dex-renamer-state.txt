@@ -1,0 +1,4 @@
+#Tue Aug 03 04:48:26 UTC 2021
+base.0=/mnt/project/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

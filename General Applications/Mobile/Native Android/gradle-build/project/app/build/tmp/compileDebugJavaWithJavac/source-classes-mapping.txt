@@ -1,0 +1,4 @@
+your/pkg/name/MainActivity.java
+ your.pkg.name.MainActivity
+your/pkg/name/BuildConfig.java
+ your.pkg.name.BuildConfig
