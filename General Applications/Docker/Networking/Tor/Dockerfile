@@ -1,23 +1,20 @@
-FROM kalilinux/kali-rolling
+FROM alpine
 
-RUN apt install tor proxychains-ng
-COPY torrc /root/.tor/
-RUN mkdir /root/.tor/hidden
-RUN tor & sleep 100 && pkill tor
+RUN apk update && apk add tor proxychains-ng bash
+RUN apk add procps
+RUN mkdir -p /etc/tor/
+
+RUN mkdir -p /root/.tor/hidden
+RUN chmod 700 /root/.tor/hidden
 
 # Copy all items
-#WORKDIR /usr/src/app
-#COPY . .
-# Get list of items
-#RUN ls
+COPY torrc /etc/tor/
+RUN tor & sleep 20 && pkill tor
 
-#Expose ports if needed
-# EXPOSE 80 5000
-#  docker run -dp 3000:3000 getting-started
+COPY tor.sh /root/
 
 ## Entry points
 # To run the container, docker build <directory>, docker run -it <image_id>
-#ENTRYPOINT  ["bash", "-c", "bash"]
-#CMD ["bash -c bash"]
-ENTRYPOINT ["tor"]
-CMD ["tor"]
+
+#ENTRYPOINT ["/root/tor.sh"] #CMD ["tor"]
+CMD ["/root/tor.sh"]

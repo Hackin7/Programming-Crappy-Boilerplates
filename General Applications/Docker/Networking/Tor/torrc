@@ -2,5 +2,5 @@
 SOCKSPort 127.0.0.1:9050
 
 ## Hidden Service: SSH
-HiddenServiceDir /data/data/com.termux/files/home/.tor/hidden
-HiddenServicePort 22 127.0.0.1:8022
+HiddenServiceDir /root/.tor/hidden
+HiddenServicePort 1 127.0.0.1:1
