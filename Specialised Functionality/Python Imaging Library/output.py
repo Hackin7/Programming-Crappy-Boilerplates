@@ -2,8 +2,8 @@ from PIL import Image
 
 f = open("pixelate.txt")
 
-h = 349
-w = 94
+h = 240
+w = 320
 img = Image.new('RGB', (w, h), (255,255,255))
 pixels = img.load()
 for i in range(w):
