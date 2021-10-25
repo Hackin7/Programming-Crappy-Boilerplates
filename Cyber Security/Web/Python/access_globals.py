@@ -8,3 +8,16 @@ object = Object.__init__
 
 flag = "boilerplates{acessing_globals}"
 print(object.__globals__)
+print()
+#print(object['__globals__'])#print()
+print(dir())
+print()
+print(dir(flag))
+print()
+print(dir(object))
+print()
+print(globals())
+print()
+print(locals())
+print()
+
