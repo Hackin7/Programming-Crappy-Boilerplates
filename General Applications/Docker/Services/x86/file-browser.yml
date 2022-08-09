@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  app:
+    image: filebrowser/filebrowser:latest
+    ports:
+      - 8082:80
+    volumes:
+      - //c/files-to-share:/srv
+      - /settings.json:/config/settings.json
+      - /filebrowser.db:/database/filebrowser.db 
+    restart: always

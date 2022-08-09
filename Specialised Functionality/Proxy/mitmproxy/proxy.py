@@ -33,7 +33,7 @@ def request(flow: http.HTTPFlow) -> None:
     flow.request.port = RPORT
 
 def response(flow: http.HTTPFlow):
-    if flow.response.status_code == 302:
+    if flow.response.headers.get("location") != None:
         loc_replace = []
         final_url = f"{LSCHEME}://{LHOST}:{LPORT}/"
         loc_replace.append((f"{RSCHEME}://{RHOST}/", final_url))
