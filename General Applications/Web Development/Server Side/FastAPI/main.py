@@ -48,6 +48,12 @@ class Item(BaseModel):
 async def create_item(item: Item, path: int = None, query:Union[str, None]  = None):
     return { "item": item, "itemname": item.name, "path": path, "query": query }
 
+# https://stackoverflow.com/questions/64379089/how-to-read-body-as-any-valid-json
+@app.post("/post/raw")
+async def get_body(request: Request):
+    body_as_string = await request.body()
+    return await request.json()
+    
 ### Middleware #########################################################
 app.add_middleware(
     CORSMiddleware,
